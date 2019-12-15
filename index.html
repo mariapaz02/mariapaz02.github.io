@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Info Pelis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+</head>
+
+<body style="font-family: 'Anton', sans-serif" class="black">
+
+        <nav>
+                <div class="nav-wrapper">
+                  <a href="#" class="brand-logo">Cine</a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="https://image.tmdb.org/t/p/original/zCdNq7RLq4Ixv8WKlslbdVc3O6V.jpg" >Imagen</a></li>
+                    
+                  </ul>
+                </div>
+              </nav>
+    <div class="container">
+        <div class="row">
+           
+            <div class="row ">
+
+
+                <div id="app">
+                    <div class="card-panel" v-if="estado">
+                        <div class="preloader-wrapper big active">
+                            <div class="spinner-layer spinner-blue">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="spinner-layer spinner-red">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="spinner-layer spinner-yellow">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="spinner-layer spinner-green">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="slider">
+                        <ul class="slides">
+                            <!---------------------------------------------------------------->
+                            <li>
+                                <img src="https://image.tmdb.org/t/p/original/1Iuskagp0RZSGKG2mGgxLoESJVk.jpg"
+                                    class="responsive-img">
+                                <div class="caption left-align">
+                                    <h3>Mal�fica: Maestra del mal</h3>
+
+                                </div>
+                            </li>
+                            <!---------------------------------------------------------------->
+                            <li>
+                                <img src="https://image.tmdb.org/t/p/original/vZiqhw6oFoMlHSneIdVip9rRou2.jpg"
+                                    class="responsive-img">
+                                <div class="caption center-align">
+                                    <h3>FROZEN: El reino del hielo</h3>
+                                </div>
+                            </li>
+                            <!---------------------------------------------------------------->
+                            <li>
+                                <img src="https://image.tmdb.org/t/p/original/w2PMyoyLU22YvrGK3smVM9fW1jj.jpg"
+                                    class="responsive-img">
+                                <div class="caption right-align">
+                                    <h3>Capitana Marvel</h3>
+                                </div>
+                            </li>
+                            <!---------------------------------------------------------------->
+                            <li>
+                                <img src="https://image.tmdb.org/t/p/original/njv65RTipNSTozFLuF85jL0bcQe.jpg"
+                                    class="responsive-img">
+                                <div class="caption center-align">
+                                    <h3>STAR WARS</h3>
+                                    <h5 class="light grey-text text-lighten-3">El despertar de la fuerza</h5>
+
+                                </div>
+                            </li>
+                            <!---------------------------------------------------------------->
+                        </ul>
+                    </div>
+                   
+                    <ul>
+                        <li v-for="item in movies">
+                            <div class="col l3">
+                                <div class="card-panel center " v-if="!estado">
+
+
+                                    <img :src="url_img+item.poster_path" height="250" class="responsive-img z-depth-3">
+                                    <p>
+                                        {{item.title}}
+                                        <br> <br>
+                                        <button @click="ver_modal(item)" class="btn-floating black">
+                                            +
+                                        </button>
+                                    </p>
+
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- Modal Structure -->
+                    <div id="modal1" class="modal">
+                        <div v-if="peliculas != null">
+                            <div class="modal-content center">
+                                <img :src="url_img+peliculas.backdrop_path" height="250"
+                                    class="responsive-img z-depth-3">
+                                <h4>{{peliculas.title}} </h4>
+                                <p>Sinopsis de la pelicula</p>
+                                <p>{{peliculas.overview}}</p>
+                                <br>
+                                <p>Voloracion: {{peliculas.vote_average}} <br> Fecha de lanzamiento:
+                                    {{peliculas.release_date}}
+                                    <br> Popularidad: {{peliculas.popularity}} </p>
+
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">cerrar</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">CREADORES</h5>
+                        <p class="red-text text-lighten-4">Maria Paz Martinez</p>
+                        <p class="red-text text-lighten-4">Brandom </p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    � Aplicaciones web
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    estado: true,
+                    movies: [],
+                    url: 'https://api.themoviedb.org/3/movie/popular?api_key=7e38bf7d7727f2c0ac63b558261d8d19&language=es-ES&page=3',
+                    url_img: 'https://image.tmdb.org/t/p/w500',
+                    results: [],
+                    peliculas: null
+                },
+                methods: {
+                    async cargar() {
+                        var resultado = await axios.get(this.url);
+                        this.movies = resultado.data.results;
+                        this.estado = false;
+                        this.estado = false;
+                    },
+                    ver_modal(item) {
+                        this.peliculas = item;
+                        var instance = M.Modal.getInstance(document.getElementById('modal1'));
+                        instance.open();
+                        var instance = M.Slider.getInstance(elem);
+
+                    }
+
+                },
+                created() {
+                    this.cargar();
+                },
+                mounted() {
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var elems = document.querySelectorAll('.modal');
+                        var instances = M.Modal.init(elems);
+                    });
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var elems = document.querySelectorAll('.slider');
+                        var instances = M.Slider.init(elems);
+                    });
+                }
+
+            });
+
+
+
+
+
+        </script>
+
+
+</body>
+
+</html>
